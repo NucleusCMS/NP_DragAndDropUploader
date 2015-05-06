@@ -74,10 +74,10 @@ class cles_Template {
 	
 	function fill($template, $values, $default = null) {
 		if( $default )
-			return preg_replace($this->defalutPattern, 'isset($values[\'$1\']) ? (\'$2\' ? htmlspecialchars($values[\'$1\'], ENT_QUOTES) : $values[\'$1\']) : $default', $template);
+			return preg_replace($this->defalutPattern, 'isset($values[\'$1\']) ? (\'$2\' ? htmlspecialchars($values[\'$1\'], ENT_QUOTES,_CHARSET) : $values[\'$1\']) : $default', $template);
 		if( $default === null )
-			return preg_replace($this->defalutPattern, '(\'$2\') ? htmlspecialchars($values[\'$1\'], ENT_QUOTES) : $values[\'$1\']', $template);
-		return preg_replace($this->defalutPattern, 'isset($values[\'$1\']) ? (\'$2\' ? htmlspecialchars($values[\'$1\'], ENT_QUOTES) : $values[\'$1\']) : \'{{$1}}\' ', $template);
+			return preg_replace($this->defalutPattern, '(\'$2\') ? htmlspecialchars($values[\'$1\'], ENT_QUOTES,_CHARSET) : $values[\'$1\']', $template);
+		return preg_replace($this->defalutPattern, 'isset($values[\'$1\']) ? (\'$2\' ? htmlspecialchars($values[\'$1\'], ENT_QUOTES,_CHARSET) : $values[\'$1\']) : \'{{$1}}\' ', $template);
 	}
 	
 	function fetchAndFill($name, $values, $dir = null, $suffix = 'html', $default = null){

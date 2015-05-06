@@ -150,12 +150,12 @@ function selectall(){
 	
 		if ($canDisable) {
 			echo "<td>".$desc."</td>\n";
-			echo "<td>".htmlspecialchars($value)."</td>\n";
-			echo '<td><input type="checkbox" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" /></td>'."\n";
+			echo "<td>".htmlspecialchars($value,ENT_QUOTES,_CHARSET)."</td>\n";
+			echo '<td><input type="checkbox" name="'.htmlspecialchars($name,ENT_QUOTES,_CHARSET).'" value="'.htmlspecialchars($value,ENT_QUOTES,_CHARSET).'" /></td>'."\n";
 		} else {
 			echo '<td><span style="font-weight:bold; color:red">'.$desc."</span></td>\n";
-			echo '<td><span style="font-weight:bold; color:red">'.htmlspecialchars($value)."</span></td>\n";
-			echo '<td>必須<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" readonly="readonly" checked="checked"/></td>'."\n";
+			echo '<td><span style="font-weight:bold; color:red">'.htmlspecialchars($value,ENT_QUOTES,_CHARSET)."</span></td>\n";
+			echo '<td>必須<input type="hidden" name="'.htmlspecialchars($name,ENT_QUOTES,_CHARSET).'" value="'.htmlspecialchars($value,ENT_QUOTES,_CHARSET).'" readonly="readonly" checked="checked"/></td>'."\n";
 		}
 		echo "</tr>\n";
 	}
