@@ -127,6 +127,8 @@ class NP_DragAndDropUploader extends NucleusPlugin {
 			'runtimes' => NP_DRAGANDDROPUPLOADER_RUNTIMES,
 		);
 		$header = $this->te->fetch('extrahead', strtolower(__CLASS__));
+		if(getNucleusVersion()<371)
+			$header = file_get_contents($this->te->templateDir.'/np_draganddropuploader/load_jquery.html') . $header;
 		$data['extrahead'] .= "\n" . $this->te->fill($header, $tplVars, false);
     }
 	
