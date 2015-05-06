@@ -55,7 +55,7 @@ class NP_DragAndDropUploader extends NucleusPlugin {
 		if (file_exists($this->getDirectory().'language/'.$language.'.php')) 
 			@include_once($this->getDirectory().'language/'.$language.'.php');
 		
-		$this->te =& new cles_Template(dirname(__FILE__).'/draganddropuploader/template');
+		$this->te = new cles_Template(dirname(__FILE__).'/draganddropuploader/template');
 	}
 	
 	// name of plugin
