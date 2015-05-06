@@ -92,7 +92,7 @@ function selectall(){
 		echo "</tr>\n";
 
 		$res = sql_query("show variables like 'version'");
-		$assoc = mysql_fetch_assoc($res);
+		$assoc = sql_fetch_assoc($res);
 		$mysqlVersion = $assoc['Value'];
 		
 		if( function_exists('gd_info') )
