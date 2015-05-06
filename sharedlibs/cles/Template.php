@@ -56,20 +56,17 @@ class cles_Template {
 	}
 
 	function fetch($name, $dir = null, $suffix = 'html') {
-		$path = $this->templateDir.'/'.( $dir ? strtolower($dir) . '/' : '' ).strtolower($name).'_'.$this->lang.( $suffix ? '.'.strtolower($suffix) : '' );
-		if ( ! file_exists($path) ){
-			$path = $this->templateDir.'/'.( $dir ? strtolower($dir) . '/' : '' ).strtolower($name).'_'.$this->defaultLang.( $suffix ? '.'.strtolower($suffix) : '' );
-			if ( ! file_exists($path) )
-				return '';
-		}
+		$dir = $dir ? strtolower($dir) . '/' : '';
+		$name = strtolower($name);
+		$suffix = $suffix ? '.'.strtolower($suffix) : '';
 		
-		$fsize = filesize($path);
-		if ($fsize <= 0) return '';
+		if(is_file(sprintf('%s/%s%s_%s%s',$this->templateDir,$dir,$name,$this->lang,$suffix)))
+			$path = sprintf('%s/%s%s_%s%s',$this->templateDir,$dir,$name,$this->lang,$suffix);
+		elseif(sprintf('%s/%s%s_%s%s',$this->templateDir,$dir,$name,$this->defaultLang,$suffix))
+			$path = sprintf('%s/%s%s_%s%s',$this->templateDir,$dir,$name,$this->defaultLang,$suffix);
+		else return '';
 		
-		$fd = fopen($path, 'r');
-		$contents = fread($fd, $fsize);
-		fclose($fd);
-		return $contents;
+		return file_get_contents($path);
 	}
 	
 	function fill($template, $values, $default = null) {
